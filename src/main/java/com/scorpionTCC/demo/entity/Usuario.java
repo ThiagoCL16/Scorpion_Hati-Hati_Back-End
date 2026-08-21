@@ -23,7 +23,7 @@ public class Usuario {
     private String avaliacoes;
 
     @Column(name = "nome_usuario")
-    private Double nome;
+    private String nome;
 
     @Column(name = "estado")
     private String estado;
