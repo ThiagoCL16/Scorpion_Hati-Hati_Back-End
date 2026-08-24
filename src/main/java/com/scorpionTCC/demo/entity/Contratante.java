@@ -14,6 +14,7 @@ public class Contratante {
     @Column(name = "id_contratante")
     private Long id;
 
-    @Column(name = "id_usuario")
-    private Long idUsuario;
+    @OneToOne
+    @JoinColumn(name = "id_usuario")
+    private Usuario usuario;
 }

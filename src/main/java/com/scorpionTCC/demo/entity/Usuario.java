@@ -20,7 +20,7 @@ public class Usuario {
     private String cidade;
 
     @Column(name = "avaliacoes")
-    private String avaliacoes;
+    private Double avaliacoes;
 
     @Column(name = "nome_usuario")
     private String nome;
