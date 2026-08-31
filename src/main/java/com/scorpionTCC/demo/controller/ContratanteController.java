@@ -20,5 +20,6 @@ public class ContratanteController{
     @PostMapping("/cadastrar")
     public void cadastrar(@RequestBody Contratante c){
         usuarioRepository.save(c.getUsuario());
+        contratanteRepository.save(c);
     }
 }

@@ -19,7 +19,7 @@ CREATE TABLE usuario
 CREATE TABLE contratante 
 ( 
  id_contratante BIGINT PRIMARY KEY IDENTITY,  
- id_usuario BIGINT IDENTITY,
+ id_usuario BIGINT,
 
  FOREIGN KEY(id_usuario) REFERENCES usuario (id_usuario)
 
