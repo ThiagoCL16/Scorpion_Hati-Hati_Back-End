@@ -8,13 +8,8 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "contratante")
-public class Contratante {
+public class Contratante extends Usuario{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_contratante")
     private Long id;
-
-    @OneToOne
-    @JoinColumn(name = "id_usuario")
-    private Usuario usuario;
 }

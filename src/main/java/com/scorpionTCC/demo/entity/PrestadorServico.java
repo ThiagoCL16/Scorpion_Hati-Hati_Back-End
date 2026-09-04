@@ -8,10 +8,9 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name="prestador_de_servico")
-public class PrestadorServico {
+public class PrestadorServico extends Usuario {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_prestador_de_servico")
+    @Column(name = "id_prestador")
     private Long id;
 
     @Column(name = "anexos")
@@ -23,6 +22,4 @@ public class PrestadorServico {
     @Column(name = "tipo_assinatura")
     private Boolean tipoAssinatura;
 
-    @Column(name = "id_usuario")
-    private Long idUsuario;
 }
