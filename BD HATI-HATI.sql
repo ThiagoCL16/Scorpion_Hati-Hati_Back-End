@@ -187,3 +187,4 @@ CREATE TABLE requer
  FOREIGN KEY(id_prestador) REFERENCES prestador_de_servico (id_prestador),
  FOREIGN KEY(id_agendamento) REFERENCES agendamento (id_agendamento)
 ); /*OK*/
+

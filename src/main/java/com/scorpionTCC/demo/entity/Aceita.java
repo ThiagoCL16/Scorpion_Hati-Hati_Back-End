@@ -19,6 +19,6 @@ public class Aceita {
     @Column(name = "id_solicitacao")
     private Long idSolicitacao;
 
-    @Column(name = "id_prestador_de_servico")
+    @Column(name = "id_prestador")
     private Long idPrestadorDeServico;
 }

@@ -16,6 +16,6 @@ public class Requer {
     @Column(name = "id_agendamento")
     private Long idAgendamento;
 
-    @Column(name = "id_prestador_de_servico")
+    @Column(name = "id_prestador")
     private Long idPrestadorDeServico;
 }

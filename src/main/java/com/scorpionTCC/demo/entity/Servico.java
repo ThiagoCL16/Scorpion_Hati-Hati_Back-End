@@ -20,7 +20,7 @@ public class Servico {
     @Column(name = "especificação")
     private String especificacao;
 
-    @Column(name = "id_prestador_de_servico")
+    @Column(name = "id_prestador")
     private Long idPrestadorDeServico;
 
     @Column(name = "status_servico")
