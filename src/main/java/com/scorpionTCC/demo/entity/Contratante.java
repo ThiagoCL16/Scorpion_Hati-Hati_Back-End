@@ -8,8 +8,5 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "contratante")
-public class Contratante extends Usuario{
-    @Id
-    @Column(name = "id_contratante")
-    private Long id;
-}
+@PrimaryKeyJoinColumn(name = "id_contratante")
+public class Contratante extends Usuario{ }

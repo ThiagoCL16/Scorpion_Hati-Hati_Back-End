@@ -22,7 +22,7 @@ public class Agendamento {
     @Column(name = "id_contratante")
     private Long idContratante;
 
-    @Column(name = "id_prestador_de_servico")
+    @Column(name = "id_prestador")
     private Long idPrestadorDeServico;
 
     @Column(name = "data_hora_agendamento")

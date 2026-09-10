@@ -8,11 +8,8 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name="prestador_de_servico")
+@PrimaryKeyJoinColumn(name = "id_prestador")
 public class PrestadorServico extends Usuario {
-    @Id
-    @Column(name = "id_prestador")
-    private Long id;
-
     @Column(name = "anexos")
     private String anexos;
 
@@ -21,5 +18,4 @@ public class PrestadorServico extends Usuario {
 
     @Column(name = "tipo_assinatura")
     private Boolean tipoAssinatura;
-
 }

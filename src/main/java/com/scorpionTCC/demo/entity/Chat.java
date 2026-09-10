@@ -17,7 +17,7 @@ public class Chat {
     @Column(name = "status_chat")
     private Boolean statusChat;
 
-    @Column(name = "id_prestador_de_servico")
+    @Column(name = "id_prestador")
     private Long idPrestadorDeServico;
 
     @Column(name = "id_contratante")
