@@ -26,11 +26,7 @@ public class ContratanteController{
             return ResponseEntity.notFound().build();
     }
 
-    @PostMapping("/cadastrar")
-    public ResponseEntity<Contratante> cadastrar(@RequestBody Contratante c){
-        Contratante contratante = contratanteService.save(c);
-        return ResponseEntity.ok(contratante);
-    }
+
 
     @PatchMapping("/atualizar/{id}")
     public ResponseEntity<Contratante> atualizarPerfil(@RequestBody Map<String, Object> campos, @PathVariable Long id) {
@@ -43,12 +39,14 @@ public class ContratanteController{
     }
 
     @DeleteMapping("/deletar/{id}")
-    public ResponseEntity<Contratante> deletarPerfil(@PathVariable Long id){
+    public ResponseEntity<Contratante> deletarPerfil(@PathVariable Long id) {
         Contratante contratante = contratanteService.deleteById(id);
-        if(contratante == null)
+        if (contratante == null)
             return ResponseEntity.notFound().build();
         else
             return ResponseEntity.ok(contratante);
     }
+
+
 
 }
