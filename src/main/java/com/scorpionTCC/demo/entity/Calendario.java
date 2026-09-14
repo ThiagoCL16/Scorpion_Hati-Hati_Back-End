@@ -13,6 +13,7 @@ public class Calendario {
     @Column(name = "id_calendario")
     private Long id;
 
-    @Column(name = "id_agendamento")
-    private Long idAgendamento;
+    @ManyToOne
+    @JoinColumn(name = "id_agendamento")
+    private Agendamento idAgendamento;
 }

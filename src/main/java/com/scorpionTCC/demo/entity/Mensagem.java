@@ -22,7 +22,12 @@ public class Mensagem {
     @Column(name = "conteudo")
     private String conteudo;
 
-    @Column(name = "id_usuario")
-    private Long idUsuario;
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
+    private Usuario idUsuario;
+
+    @ManyToOne
+    @JoinColumn(name = "id_chat")
+    private Chat IdChat;
 
 }

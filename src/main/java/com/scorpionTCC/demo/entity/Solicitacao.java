@@ -16,11 +16,13 @@ public class Solicitacao {
     @Column(name = "id_solicitacao")
     private Long id;
 
-    @Column(name = "id_contratante")
-    private Long idContratante;
+    @ManyToOne
+    @JoinColumn(name = "id_contratante")
+    private Contratante idContratante;
 
-    @Column(name = "id_prestador_de_servico")
-    private Long idPrestadorDeServico;
+    @ManyToOne
+    @JoinColumn(name = "id_prestador")
+    private PrestadorServico idPrestadorDeServico;
 
     @Column(name = "especificacao_solicitacao")
     private String especificacaoSolicitacao;

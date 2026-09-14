@@ -14,9 +14,11 @@ public class Realiza {
     @Column(name = "id_realiza")
     private Long id;
 
-    @Column(name = "id_solicitacao")
-    private Long idSolicitacao;
+    @ManyToOne
+    @JoinColumn(name = "id_solicitacao")
+    private Solicitacao idSolicitacao;
 
-    @Column(name = "id_contratante")
-    private Long idContratante;
+    @ManyToOne
+    @JoinColumn(name = "id_contratante")
+    private Contratante idContratante;
 }

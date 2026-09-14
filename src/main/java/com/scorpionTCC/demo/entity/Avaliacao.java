@@ -29,9 +29,11 @@ public class Avaliacao {
     @Column(name = "comentario")
     private String comentario;
 
-    @Column(name = "id_contratante")
-    private Long idContratante;
+    @ManyToOne
+    @JoinColumn(name = "id_contratante")
+    private Contratante idContratante;
 
-    @Column(name = "id_prestador_de_servico")
-    private Long idPrestadorDeServico;
+    @ManyToOne
+    @JoinColumn(name = "id_prestador")
+    private PrestadorServico idPrestadorDeServico;
 }

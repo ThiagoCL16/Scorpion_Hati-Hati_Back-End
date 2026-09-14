@@ -17,11 +17,13 @@ public class Premium {
     @Column(name = "id_premium")
     private Long id;
 
-    @Column(name = "id_usuario")
-    private Long idUsuario;
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
+    private Usuario idUsuario;
 
-    @Column(name = "id_beneficios")
-    private Long idBeneficios;
+    @ManyToOne
+    @JoinColumn(name = "id_beneficios")
+    private Beneficios idBeneficios;
 
     @Column(name = "tipo_premium")
     private Boolean tipoPremium;

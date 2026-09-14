@@ -16,9 +16,11 @@ public class Aceita {
     @Column(name = "id_aceita")
     private Long id;
 
-    @Column(name = "id_solicitacao")
-    private Long idSolicitacao;
+    @ManyToOne
+    @JoinColumn(name = "id_solicitacao")
+    private Solicitacao idSolicitacao;
 
-    @Column(name = "id_prestador_de_servico")
-    private Long idPrestadorDeServico;
+    @ManyToOne
+    @JoinColumn(name = "id_prestador")
+    private PrestadorServico idPrestadorDeServico;
 }

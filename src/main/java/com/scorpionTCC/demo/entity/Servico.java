@@ -14,14 +14,16 @@ public class Servico {
     @Column(name = "id_servico")
     private Long id;
 
-    @Column(name = "id_contratante")
-    private Long idContratante;
+    @ManyToOne
+    @JoinColumn(name = "id_contratante")
+    private Contratante idContratante;
 
     @Column(name = "especificação")
     private String especificacao;
 
-    @Column(name = "id_prestador_de_servico")
-    private Long idPrestadorDeServico;
+    @ManyToOne
+    @JoinColumn(name = "id_prestador")
+    private PrestadorServico idPrestadorDeServico;
 
     @Column(name = "status_servico")
     private String statusServico;

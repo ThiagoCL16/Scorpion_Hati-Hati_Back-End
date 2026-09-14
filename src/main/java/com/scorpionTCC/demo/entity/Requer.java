@@ -13,9 +13,11 @@ public class Requer {
     @Column(name = "id_requer")
     private Long id;
 
-    @Column(name = "id_agendamento")
-    private Long idAgendamento;
+    @ManyToOne
+    @JoinColumn(name = "id_agendamento")
+    private Agendamento idAgendamento;
 
-    @Column(name = "id_prestador_de_servico")
-    private Long idPrestadorDeServico;
+    @ManyToOne
+    @JoinColumn(name = "id_prestador")
+    private PrestadorServico idPrestadorDeServico;
 }

@@ -8,11 +8,8 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name="prestador_de_servico")
-public class PrestadorServico {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_prestador_de_servico")
-    private Long id;
+@PrimaryKeyJoinColumn(name = "id_prestador")
+public class PrestadorServico extends Usuario {
 
     @Column(name = "anexos")
     private String anexos;
@@ -23,6 +20,4 @@ public class PrestadorServico {
     @Column(name = "tipo_assinatura")
     private Boolean tipoAssinatura;
 
-    @Column(name = "id_usuario")
-    private Long idUsuario;
 }
