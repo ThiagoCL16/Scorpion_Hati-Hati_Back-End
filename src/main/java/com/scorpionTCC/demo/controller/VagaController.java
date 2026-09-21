@@ -5,10 +5,7 @@ import com.scorpionTCC.demo.repository.VagaRepository;
 import com.scorpionTCC.demo.service.VagaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,7 +15,7 @@ public class VagaController {
     @Autowired
     VagaService vagaService;
 
-    @GetMapping("/vagas/GetAll")
+    @GetMapping("/GetAll")
     public ResponseEntity<List<Vaga>> buscarVagas(){
         List<Vaga> vagas = vagaService.GetVagas();
         if (vagas == null)
@@ -27,7 +24,7 @@ public class VagaController {
             return ResponseEntity.ok(vagas);
     }
 
-    @GetMapping("/vagas/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Vaga> buscarVagaPorId(@PathVariable Long id)
     {
         Vaga vaga = vagaService.GetVagaById(id);
@@ -36,6 +33,15 @@ public class VagaController {
             return ResponseEntity.notFound().build();
         else
             return ResponseEntity.ok(vaga);
+    }
+
+    @PostMapping("/criar")
+    public ResponseEntity<Vaga> criarVaga(@RequestBody Vaga vaga)
+    {
+        // TODO Ver se está funcionando corretamente
+
+        Vaga v = vagaService.save(vaga, vaga.getIdContratante().getId());
+        return ResponseEntity.ok(vaga);
     }
 
 }
