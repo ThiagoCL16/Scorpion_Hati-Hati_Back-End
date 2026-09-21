@@ -2,9 +2,11 @@ package com.scorpionTCC.demo.service;
 
 import com.scorpionTCC.demo.entity.Contratante;
 import com.scorpionTCC.demo.repository.ContratanteRepository;
+import com.scorpionTCC.demo.repository.PrestadorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
