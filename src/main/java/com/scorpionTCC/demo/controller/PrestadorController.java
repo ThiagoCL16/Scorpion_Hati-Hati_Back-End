@@ -19,23 +19,4 @@ public class PrestadorController {
     @Autowired
     private PrestadorService prestadorService;
 
-    @GetMapping("/vagas/GetAll")
-    public ResponseEntity<List<Vaga>> buscarVagas(){
-        List<Vaga> vagas = prestadorService.GetVagas();
-        if (vagas == null)
-            return ResponseEntity.notFound().build();
-        else
-            return ResponseEntity.ok(vagas);
-    }
-
-    @GetMapping("/vagas/{id}")
-    public ResponseEntity<Vaga> buscarVagaPorId(@PathVariable Long id)
-    {
-        Vaga vaga = prestadorService.GetVagaById(id);
-
-        if(vaga == null)
-            return ResponseEntity.notFound().build();
-        else
-            return ResponseEntity.ok(vaga);
-    }
 }

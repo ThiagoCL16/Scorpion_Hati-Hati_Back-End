@@ -7,7 +7,9 @@ import com.scorpionTCC.demo.repository.ContratanteRepository;
 import com.scorpionTCC.demo.repository.PrestadorRepository;
 import com.scorpionTCC.demo.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UsuarioService {
 
     @Autowired

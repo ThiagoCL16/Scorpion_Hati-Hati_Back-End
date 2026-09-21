@@ -19,20 +19,4 @@ public class PrestadorService {
     @Autowired
     PrestadorRepository prestadorRepository;
 
-    @Autowired
-    VagaRepository vagaRepository;
-
-    public List<Vaga> GetVagas(){
-        List<Vaga> vagas = vagaRepository.findAll();
-        return vagas;
-    }
-
-    public Vaga GetVagaById(Long id){
-        Optional<Vaga> vaga = vagaRepository.findById(id);
-
-        if(vaga.isPresent())
-            return vaga.get();
-        else
-            return null;
-    }
 }
