@@ -29,6 +29,14 @@ public class PrestadorController {
             return ResponseEntity.notFound().build();
     }
 
+    @GetMapping("/getAll")
+    public ResponseEntity<List<PrestadorServico>> buscarPrestadores()
+    {
+        List<PrestadorServico> prestadores = prestadorService.getPrestadores();
+        return ResponseEntity.ok(prestadores);
+    }
+
+
     @PostMapping("/cadastrar")
     public ResponseEntity<PrestadorServico> cadastrar(@RequestBody PrestadorServico p){
         PrestadorServico prestador = prestadorService.save(p);

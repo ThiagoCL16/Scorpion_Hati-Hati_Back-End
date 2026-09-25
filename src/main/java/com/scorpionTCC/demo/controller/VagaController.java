@@ -17,6 +17,7 @@ public class VagaController {
 
     @GetMapping("/GetAll")
     public ResponseEntity<List<Vaga>> buscarVagas(){
+        // TODO Implementar função de filtros
         List<Vaga> vagas = vagaService.GetVagas();
         if (vagas == null)
             return ResponseEntity.notFound().build();

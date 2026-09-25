@@ -29,6 +29,12 @@ public class PrestadorService {
         return prestadorRepository.findById(id);
     }
 
+    public List<PrestadorServico> getPrestadores()
+    {
+        List<PrestadorServico> prestadores = prestadorRepository.findAll();
+        return prestadores;
+    }
+
     public PrestadorServico update(Long id, Map<String, Object> campos){
         Optional<PrestadorServico> optionalPrestador = prestadorRepository.findById(id);
         PrestadorServico prestador;

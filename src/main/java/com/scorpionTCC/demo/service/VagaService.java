@@ -36,8 +36,8 @@ public class VagaService {
         Optional<Contratante> c =  contratanteService.findById(idContratante);
         if(c.isPresent())
             vaga.setIdContratante(c.get());
-        else
-            return null;
+        //else
+        //    return null;
         Vaga v = vagaRepository.save(vaga);
         return v;
     }
