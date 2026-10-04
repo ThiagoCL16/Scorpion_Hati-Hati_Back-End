@@ -16,6 +16,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/prestadores")
+@CrossOrigin("*")
 public class PrestadorController {
     @Autowired
     private PrestadorService prestadorService;

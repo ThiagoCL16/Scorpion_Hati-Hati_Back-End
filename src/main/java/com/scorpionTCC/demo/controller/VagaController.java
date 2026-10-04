@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/vagas")
+@CrossOrigin("*")
 public class VagaController {
     @Autowired
     VagaService vagaService;

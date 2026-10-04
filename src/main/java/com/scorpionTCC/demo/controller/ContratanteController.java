@@ -13,6 +13,7 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/contratantes")
+@CrossOrigin("*")
 public class ContratanteController{
     @Autowired
     private ContratanteService contratanteService;
