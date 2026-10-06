@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Getter
@@ -27,6 +28,21 @@ public class Vaga {
 
     @Column(name = "prestador_requerido")
     private String prestadorRequerido;
+
+    @Column(name = "duracao")
+    private String duracao;
+
+    @Column(name = "valor")
+    private BigDecimal valor;
+
+    @Column(name = "localizacao")
+    private String localizacao;
+
+    @Column(name = "pessoa_cuidada")
+    private String pessoaCuidada;
+
+    @Column(name = "idade_pessoa_cuidada")
+    private int idadePessoaCuidada;
 
     @ManyToOne
     @JoinColumn(name = "id_contratante")
