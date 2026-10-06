@@ -44,6 +44,9 @@ public class Vaga {
     @Column(name = "idade_pessoa_cuidada")
     private int idadePessoaCuidada;
 
+    @Column(name = "nome_contratante")
+    private String nomeContratante;
+
     @ManyToOne
     @JoinColumn(name = "id_contratante")
     private Contratante idContratante;
