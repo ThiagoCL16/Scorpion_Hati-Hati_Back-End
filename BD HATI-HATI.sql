@@ -97,6 +97,11 @@ CREATE TABLE vaga
  data_hora_vaga DATETIME,  
  prestador_requerido VARCHAR (50),
  id_contratante BIGINT,
+ duracao VARCHAR(20),
+ valor smallmoney,
+ localizacao VARCHAR(100),
+ pessoa_cuidada VARCHAR(20),
+ idade_pessoa_cuidada INT,
  FOREIGN KEY(id_contratante) REFERENCES contratante (id_contratante)
 
 ); /*OK*/ 
