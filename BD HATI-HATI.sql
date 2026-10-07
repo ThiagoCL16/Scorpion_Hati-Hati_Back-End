@@ -103,6 +103,7 @@ CREATE TABLE vaga
  pessoa_cuidada VARCHAR(20),
  idade_pessoa_cuidada INT,
  nome_contratante VARCHAR(20),
+ tipo_servico VARCHAR(20),
  FOREIGN KEY(id_contratante) REFERENCES contratante (id_contratante)
 
 ); /*OK*/ 

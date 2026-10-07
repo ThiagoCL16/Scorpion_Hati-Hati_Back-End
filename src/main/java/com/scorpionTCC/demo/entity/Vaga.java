@@ -47,6 +47,9 @@ public class Vaga {
     @Column(name = "nome_contratante")
     private String nomeContratante;
 
+    @Column(name = "tipo_servico")
+    private String tipoServico;
+
     @ManyToOne
     @JoinColumn(name = "id_contratante")
     private Contratante idContratante;
