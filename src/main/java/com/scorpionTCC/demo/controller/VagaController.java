@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/vagas")
@@ -17,9 +18,9 @@ public class VagaController {
     VagaService vagaService;
 
     @GetMapping("/GetAll")
-    public ResponseEntity<List<Vaga>> buscarVagas(){
+    public ResponseEntity<List<Vaga>> buscarVagas(@RequestBody Map<String, Object> filtros){
         // TODO Implementar função de filtros
-        List<Vaga> vagas = vagaService.GetVagas();
+        List<Vaga> vagas = vagaService.GetVagas(filtros);
         if (vagas == null)
             return ResponseEntity.notFound().build();
         else

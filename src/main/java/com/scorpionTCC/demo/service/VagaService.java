@@ -5,8 +5,10 @@ import com.scorpionTCC.demo.entity.Vaga;
 import com.scorpionTCC.demo.repository.VagaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -17,8 +19,15 @@ public class VagaService {
     @Autowired
     ContratanteService contratanteService;
 
-    public List<Vaga> GetVagas(){
-        List<Vaga> vagas = vagaRepository.findAll();
+    public List<Vaga> GetVagas(@RequestBody Map<String, Object> filtros){
+        String profissao = "";
+        filtros.forEach((nomeFiltro, valorFiltro) -> {
+            if(nomeFiltro.equals("profissao"))
+            {
+                profissao.concat(valorFiltro.toString());
+            }
+        });
+        List<Vaga> vagas = vagaRepository.findByFiltros(profissao); //TODO Implementar funções no repository
         return vagas;
     }
 
