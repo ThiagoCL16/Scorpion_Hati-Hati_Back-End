@@ -10,6 +10,6 @@ import lombok.Setter;
 @Table(name = "contratante")
 @PrimaryKeyJoinColumn(name = "id_contratante")
 public class Contratante extends Usuario{
-
-
+    /* TODO criar tabela de endereço (CEP, coordenadas geográficas, número, complemento), fazer
+        ela ter relacionamento com contratante e tentar integrar com Maps */
 }

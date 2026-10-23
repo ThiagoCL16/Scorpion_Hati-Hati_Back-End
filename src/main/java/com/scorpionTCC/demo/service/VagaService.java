@@ -41,4 +41,12 @@ public class VagaService {
         Vaga v = vagaRepository.save(vaga);
         return v;
     }
+
+    public boolean deleteById(Long id) {
+        if (!vagaRepository.existsById(id))
+            return false;
+
+        vagaRepository.deleteById(id);
+        return true;
+    }
 }

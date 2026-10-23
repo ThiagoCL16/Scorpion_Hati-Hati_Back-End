@@ -46,4 +46,12 @@ public class VagaController {
         return ResponseEntity.ok(vaga);
     }
 
+    @DeleteMapping("/deletar/{id}")
+    public ResponseEntity<Void> deletarVaga(@PathVariable Long id) {
+        if (vagaService.deleteById(id))
+            return ResponseEntity.noContent().build(); // 204
+        else
+            return ResponseEntity.notFound().build();  // 404
+    }
+
 }
