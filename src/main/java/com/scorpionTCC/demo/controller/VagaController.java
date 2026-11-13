@@ -1,7 +1,6 @@
 package com.scorpionTCC.demo.controller;
 
-import com.scorpionTCC.demo.entity.Vaga;
-import com.scorpionTCC.demo.repository.VagaRepository;
+import com.scorpionTCC.demo.entity.VagaPublica;
 import com.scorpionTCC.demo.service.VagaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +16,9 @@ public class VagaController {
     VagaService vagaService;
 
     @GetMapping("/GetAll")
-    public ResponseEntity<List<Vaga>> buscarVagas(){
+    public ResponseEntity<List<VagaPublica>> buscarVagas(){
         // TODO Implementar função de filtros
-        List<Vaga> vagas = vagaService.GetVagas();
+        List<VagaPublica> vagas = vagaService.GetVagas();
         if (vagas == null)
             return ResponseEntity.notFound().build();
         else
@@ -27,9 +26,9 @@ public class VagaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Vaga> buscarVagaPorId(@PathVariable Long id)
+    public ResponseEntity<VagaPublica> buscarVagaPorId(@PathVariable Long id)
     {
-        Vaga vaga = vagaService.GetVagaById(id);
+        VagaPublica vaga = vagaService.GetVagaById(id);
 
         if(vaga == null)
             return ResponseEntity.notFound().build();
@@ -38,11 +37,11 @@ public class VagaController {
     }
 
     @PostMapping("/criar")
-    public ResponseEntity<Vaga> criarVaga(@RequestBody Vaga vaga)
+    public ResponseEntity<VagaPublica> criarVaga(@RequestBody VagaPublica vaga)
     {
         // TODO Ver se está funcionando corretamente
 
-        Vaga v = vagaService.save(vaga, vaga.getIdContratante().getId());
+        VagaPublica v = vagaService.save(vaga, vaga.getIdContratante().getId());
         return ResponseEntity.ok(vaga);
     }
 

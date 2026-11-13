@@ -16,7 +16,7 @@ public class Realiza {
 
     @ManyToOne
     @JoinColumn(name = "id_solicitacao")
-    private Solicitacao idSolicitacao;
+    private VagaPrivada idSolicitacao;
 
     @ManyToOne
     @JoinColumn(name = "id_contratante")

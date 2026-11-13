@@ -197,3 +197,36 @@ CREATE TABLE requer
  FOREIGN KEY(id_agendamento) REFERENCES agendamento (id_agendamento)
 ); /*OK*/
 
+CREATE TABLE candidatura (
+    id_candidatura BIGINT IDENTITY(1,1) PRIMARY KEY,
+
+    id_vaga BIGINT NOT NULL,
+    id_prestador BIGINT NOT NULL,
+
+    data_candidatura DATETIME2 NOT NULL
+        DEFAULT SYSDATETIME(),
+
+    status_candidatura VARCHAR(20) NOT NULL
+        DEFAULT 'PENDENTE',
+
+    CONSTRAINT fk_candidatura_vaga
+        FOREIGN KEY (id_vaga)
+        REFERENCES vaga(id_vaga),
+
+    CONSTRAINT fk_candidatura_prestador
+        FOREIGN KEY (id_prestador)
+        REFERENCES prestador_de_servico(id_prestador),
+
+    CONSTRAINT uq_candidatura_vaga_prestador
+        UNIQUE (id_vaga, id_prestador),
+
+    CONSTRAINT ck_status_candidatura
+        CHECK (
+            status_candidatura IN (
+                'PENDENTE',
+                'ACEITA',
+                'RECUSADA',
+                'CANCELADA'
+            )
+        )
+);

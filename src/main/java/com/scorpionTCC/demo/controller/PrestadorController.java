@@ -1,10 +1,6 @@
 package com.scorpionTCC.demo.controller;
 
-import com.scorpionTCC.demo.entity.Contratante;
 import com.scorpionTCC.demo.entity.PrestadorServico;
-import com.scorpionTCC.demo.entity.Vaga;
-import com.scorpionTCC.demo.repository.PrestadorRepository;
-import com.scorpionTCC.demo.service.ContratanteService;
 import com.scorpionTCC.demo.service.PrestadorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
