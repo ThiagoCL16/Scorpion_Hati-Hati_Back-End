@@ -16,7 +16,6 @@ public class Calendario {
     @ManyToOne
     @JoinColumn(name = "id_agendamento")
     private Agendamento idAgendamento;
-    private String status;
 
 
 }
