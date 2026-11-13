@@ -21,6 +21,7 @@ public class PrestadorService {
     PrestadorRepository prestadorRepository;
 
     public PrestadorServico save(PrestadorServico prestador){
+        prestador.setTipo(false); // tipo 'false' = prestador
         PrestadorServico p = prestadorRepository.save(prestador);
         return p;
     }

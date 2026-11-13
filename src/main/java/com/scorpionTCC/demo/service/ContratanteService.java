@@ -18,6 +18,7 @@ public class ContratanteService {
     // UsuarioRepository usuarioRepository;
 
     public Contratante save(Contratante contratante){
+        contratante.setTipo(true); // tipo 'true' = contratante
         Contratante c = contratanteRepository.save(contratante);
         return c;
     }
