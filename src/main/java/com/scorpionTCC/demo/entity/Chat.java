@@ -17,11 +17,11 @@ public class Chat {
     @Column(name = "status_chat")
     private Boolean statusChat;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_prestador")
     private PrestadorServico idPrestadorDeServico;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_contratante")
     private Contratante idContratante;
 }

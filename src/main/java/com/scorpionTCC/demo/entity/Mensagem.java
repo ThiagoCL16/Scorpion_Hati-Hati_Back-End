@@ -19,15 +19,22 @@ public class Mensagem {
     @Column(name = "data_hora")
     private LocalDateTime dataHora;
 
-    @Column(name = "conteudo")
+    @Column(name = "conteudo", length = 1000)
     private String conteudo;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_usuario")
     private Usuario idUsuario;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_chat")
     private Chat IdChat;
 
+
+    @PrePersist
+    public void antesDeSalvar() {
+        if (dataHora == null) {
+            dataHora = LocalDateTime.now();
+        }
+    }
 }
