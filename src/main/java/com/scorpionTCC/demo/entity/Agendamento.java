@@ -37,4 +37,10 @@ public class Agendamento {
     @JoinColumn(name = "id_solicitacao")
     private VagaPrivada idSolicitacao;
 
+
+    @ManyToOne
+    @JoinColumn(name = "id_vaga")
+    private VagaPublica idVaga;
+
+
 }

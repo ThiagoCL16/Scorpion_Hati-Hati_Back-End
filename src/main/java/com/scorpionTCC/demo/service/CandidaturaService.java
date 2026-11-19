@@ -1,6 +1,10 @@
 
 package com.scorpionTCC.demo.service;
 
+
+import com.scorpionTCC.demo.repository.AgendamentoRepository;
+import com.scorpionTCC.demo.entity.Agendamento;
+import com.scorpionTCC.demo.enums.StatusCandidatura;
 import com.scorpionTCC.demo.entity.Candidatura;
 import com.scorpionTCC.demo.entity.PrestadorServico;
 import com.scorpionTCC.demo.entity.VagaPublica;
@@ -18,19 +22,24 @@ import java.util.List;
 @Service
 public class CandidaturaService {
 
+    private final AgendamentoRepository agendamentoRepository;
     private final CandidaturaRepository candidaturaRepository;
     private final VagaRepository vagaRepository;
     private final PrestadorRepository prestadorRepository;
 
+
     public CandidaturaService(
             CandidaturaRepository candidaturaRepository,
             VagaRepository vagaRepository,
-            PrestadorRepository prestadorRepository
+            PrestadorRepository prestadorRepository,
+            AgendamentoRepository agendamentoRepository
     ) {
         this.candidaturaRepository = candidaturaRepository;
         this.vagaRepository = vagaRepository;
         this.prestadorRepository = prestadorRepository;
+        this.agendamentoRepository = agendamentoRepository;
     }
+
 
     // Prestador se candidata a uma vaga pública
     @Transactional
@@ -81,4 +90,57 @@ public class CandidaturaService {
     public List<Candidatura> listarPorPrestador(Long idPrestador) {
         return candidaturaRepository.findByPrestador_Id(idPrestador);
     }
+
+    @Transactional
+    public Candidatura aceitarCandidatura(
+            Long idCandidatura,
+            Long idContratante
+    ) {
+        Candidatura candidatura = candidaturaRepository
+                .findById(idCandidatura)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Candidatura não encontrada"
+                ));
+
+        if (candidatura.getStatus() != StatusCandidatura.PENDENTE) {
+            throw new ResponseStatusException(
+                    HttpStatus.CONFLICT,
+                    "Esta candidatura não está pendente"
+            );
+        }
+
+        VagaPublica vaga = candidatura.getVaga();
+
+        if (vaga.getIdContratante() == null
+                || !vaga.getIdContratante().getId().equals(idContratante)) {
+            throw new ResponseStatusException(
+                    HttpStatus.FORBIDDEN,
+                    "Este contratante não é responsável pela vaga"
+            );
+        }
+
+        if (agendamentoRepository.existsByIdVaga_Id(vaga.getId())) {
+            throw new ResponseStatusException(
+                    HttpStatus.CONFLICT,
+                    "Esta vaga já possui um agendamento"
+            );
+        }
+
+        Agendamento agendamento = new Agendamento();
+        agendamento.setIdVaga(vaga);
+        agendamento.setIdContratante(vaga.getIdContratante());
+        agendamento.setIdPrestadorDeServico(candidatura.getPrestador());
+        agendamento.setDataHoraAgendamento(vaga.getDataHoraVaga());
+        agendamento.setLocalServico(vaga.getLocalizacao());
+        agendamento.setStatusAgendamento("AGENDADO");
+
+        agendamentoRepository.save(agendamento);
+
+        candidatura.setStatus(StatusCandidatura.ACEITA);
+        return candidaturaRepository.save(candidatura);
+    }
+
+
+
 }

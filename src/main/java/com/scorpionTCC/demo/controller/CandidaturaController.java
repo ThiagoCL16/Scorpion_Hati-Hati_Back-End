@@ -7,6 +7,8 @@ import com.scorpionTCC.demo.service.CandidaturaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -55,4 +57,16 @@ public class CandidaturaController {
                 candidaturaService.listarPorPrestador(idPrestador)
         );
     }
+
+    @PostMapping("/{idCandidatura}/aceitar/contratante/{idContratante}")
+    public Candidatura aceitarCandidatura(
+            @PathVariable Long idCandidatura,
+            @PathVariable Long idContratante
+    ) {
+        return candidaturaService.aceitarCandidatura(
+                idCandidatura,
+                idContratante
+        );
+    }
+
 }

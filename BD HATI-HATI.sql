@@ -1,6 +1,3 @@
-use master
-drop database hati_hati
-
 CREATE DATABASE hati_hati;
 USE hati_hati;
 
@@ -48,26 +45,27 @@ CREATE TABLE solicitacao
     REFERENCES contratante (id_contratante) 
 ); /*OK*/
 
-CREATE TABLE agendamento 
-( 
- status_agendamento VARCHAR (10),    
- id_contratante BIGINT,  
- id_prestador BIGINT,  
- id_agendamento BIGINT PRIMARY KEY IDENTITY,  
- data_hora_agendamento DATETIME,  
- local_servico  VARCHAR(90),  
- id_solicitacao BIGINT, 
+CREATE TABLE agendamento
+(
+ status_agendamento VARCHAR (10),
+ id_contratante BIGINT,
+ id_prestador BIGINT,
+ id_agendamento BIGINT PRIMARY KEY IDENTITY,
+ data_hora_agendamento DATETIME,
+ local_servico  VARCHAR(90),
+ id_solicitacao BIGINT,
+ id_vaga BIGINT,
 
- FOREIGN KEY(id_solicitacao) REFERENCES solicitacao (id_solicitacao), 
- FOREIGN KEY(id_prestador) REFERENCES prestador_de_servico (id_prestador), 
- FOREIGN KEY(id_contratante) REFERENCES contratante (id_contratante) 
-);/*OK*/ 
+ FOREIGN KEY(id_solicitacao) REFERENCES solicitacao (id_solicitacao),
+ FOREIGN KEY(id_prestador) REFERENCES prestador_de_servico (id_prestador),
+ FOREIGN KEY(id_contratante) REFERENCES contratante (id_contratante)
+);/*OK*/
 
 
 CREATE TABLE servico 
 ( 
  id_contratante BIGINT,  
- especificação VARCHAR (1000),  
+ especificao VARCHAR (1000),  
  id_prestador BIGINT,  
  status_servico VARCHAR (10),  
  id_servico BIGINT PRIMARY KEY IDENTITY, 
@@ -93,7 +91,7 @@ CREATE TABLE vaga
 ( 
  tipo_vaga BIT,  
  id_vaga BIGINT PRIMARY KEY IDENTITY,  
- descrição_serviço_vaga VARCHAR(1000),  
+ descricao_servico_vaga VARCHAR(1000),  
  data_hora_vaga DATETIME,  
  prestador_requerido VARCHAR (50),
  id_contratante BIGINT,
@@ -106,7 +104,14 @@ CREATE TABLE vaga
  tipo_servico VARCHAR(20),
  FOREIGN KEY(id_contratante) REFERENCES contratante (id_contratante)
 
-); /*OK*/ 
+); /*OK*/
+
+
+ALTER TABLE agendamento
+    ADD CONSTRAINT fk_agendamento_vaga
+        FOREIGN KEY (id_vaga)
+            REFERENCES vaga(id_vaga);
+
 
 CREATE TABLE beneficios
 ( 
