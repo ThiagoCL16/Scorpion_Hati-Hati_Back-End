@@ -18,7 +18,7 @@ public class Servico {
     @JoinColumn(name = "id_contratante")
     private Contratante idContratante;
 
-    @Column(name = "especificação")
+    @Column(name = "especificacao")
     private String especificacao;
 
     @ManyToOne

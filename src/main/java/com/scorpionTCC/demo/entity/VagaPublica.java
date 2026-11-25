@@ -20,7 +20,7 @@ public class VagaPublica {
     @Column(name = "tipo_vaga")
     private Boolean tipoVaga;
 
-    @Column(name = "descrição_serviço_vaga")
+    @Column(name = "descricao_servico_vaga")
     private String descricaoServicoVaga;
 
     @Column(name = "data_hora_vaga")

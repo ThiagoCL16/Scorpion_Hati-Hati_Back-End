@@ -4,15 +4,14 @@ package com.scorpionTCC.demo.controller;
 import com.scorpionTCC.demo.entity.Agendamento;
 import com.scorpionTCC.demo.repository.AgendamentoRepository;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
+
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/agendamentos")
 public class AgendamentoController {
