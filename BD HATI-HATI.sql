@@ -1,5 +1,10 @@
+USE master;
+GO
 CREATE DATABASE hati_hati;
+GO
+
 USE hati_hati;
+GO
 
 CREATE TABLE usuario  
 ( 
@@ -65,7 +70,7 @@ CREATE TABLE agendamento
 CREATE TABLE servico 
 ( 
  id_contratante BIGINT,  
- especificao VARCHAR (1000),  
+ especificacao VARCHAR (1000),
  id_prestador BIGINT,  
  status_servico VARCHAR (10),  
  id_servico BIGINT PRIMARY KEY IDENTITY, 
