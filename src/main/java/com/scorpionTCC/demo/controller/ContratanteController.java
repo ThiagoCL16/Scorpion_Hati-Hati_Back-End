@@ -4,6 +4,7 @@ import com.scorpionTCC.demo.entity.Contratante;
 import com.scorpionTCC.demo.entity.Usuario;
 import com.scorpionTCC.demo.repository.ContratanteRepository;
 import com.scorpionTCC.demo.repository.UsuarioRepository;
+import com.scorpionTCC.demo.responses.LoginResponse;
 import com.scorpionTCC.demo.service.ContratanteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -50,6 +51,14 @@ public class ContratanteController{
             return ResponseEntity.notFound().build();
         else
             return ResponseEntity.ok(contratante);
+    }
+
+    @PostMapping("/entrar")
+    public ResponseEntity<LoginResponse> entrarNaConta(@RequestBody Map<String, Object> campos)
+    {
+        LoginResponse loginResponse = contratanteService.logIn(campos);
+
+        return ResponseEntity.ok(loginResponse);
     }
 
 }

@@ -1,12 +1,13 @@
 package com.scorpionTCC.demo.service;
 
 import com.scorpionTCC.demo.entity.Contratante;
+import com.scorpionTCC.demo.entity.Usuario;
 import com.scorpionTCC.demo.repository.ContratanteRepository;
-import com.scorpionTCC.demo.repository.PrestadorRepository;
+import com.scorpionTCC.demo.repository.UsuarioRepository;
+import com.scorpionTCC.demo.responses.LoginResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -15,7 +16,8 @@ public class ContratanteService {
     @Autowired
     ContratanteRepository contratanteRepository;
 
-    // UsuarioRepository usuarioRepository;
+    @Autowired
+    UsuarioRepository usuarioRepository;
 
     public Contratante save(Contratante contratante){
         contratante.setTipo(true); // tipo 'true' = contratante
@@ -64,5 +66,26 @@ public class ContratanteService {
             contratante = optionalContratante.get();
         contratanteRepository.delete(contratante);
         return contratante;
+    }
+
+    public LoginResponse logIn(Map<String, Object> campos)
+    {
+        String nomeUsuario = campos.getOrDefault("nomeUsuario", "").toString();
+        String senha = campos.getOrDefault("senha", "").toString();
+        Usuario usuario = null;
+
+        if(nomeUsuario.isEmpty() || senha.isEmpty())
+            return new LoginResponse("Campo vazio", null);
+
+        Optional<Usuario> u = usuarioRepository.findByNomeUsuario(nomeUsuario);
+        if(u.isPresent()) {
+            usuario = u.get();
+            if (usuario.getSenha().equals(senha))
+                return new LoginResponse("Senha correta!", usuario);
+            else
+                return new LoginResponse("Senha incorreta!", null);
+        }
+        else
+            return  new LoginResponse("Usuário não encontrado!", null);
     }
 }

@@ -35,4 +35,7 @@ public abstract class Usuario {
 
     @Column(name = "tipo_usuario")
     private Boolean tipo;
+
+    @Column(name = "senha")
+    private String senha;
 }
