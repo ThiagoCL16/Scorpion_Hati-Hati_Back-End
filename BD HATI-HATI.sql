@@ -8,6 +8,7 @@ CREATE TABLE usuario
 ( 
  id_usuario BIGINT PRIMARY KEY IDENTITY,  
  cidade VARCHAR(58),  
+ senha VARCHAR(30),
  avaliacoes FLOAT,  
  nome_usuario VARCHAR(70),  
  estado VARCHAR(28),
@@ -107,6 +108,7 @@ CREATE TABLE vaga
  FOREIGN KEY(id_contratante) REFERENCES contratante (id_contratante)
 
 ); /*OK*/ 
+-- drop table vaga
 
 CREATE TABLE beneficios
 ( 
