@@ -5,12 +5,12 @@ import com.scorpionTCC.demo.dto.EnviarMensagemRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.stereotype.Service;
+
 import java.util.Objects;
+
 @Service
 public class ChatService {
 
-
-    // Validar dados para criação de conversa
     private void validarCriarChat(CriarChatRequest request) {
 
         if (request == null) {
@@ -42,19 +42,14 @@ public class ChatService {
                 request.idContratante(),
                 request.idPrestador()
         )) {
-
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST,
                     "Os participantes devem ser diferentes."
             );
         }
-        validarCriarChat(request);
     }
 
-    // Validar dados para envio de mensagem
-    private void validarEnviarMensagem(
-            EnviarMensagemRequest request
-    ) {
+    private void validarEnviarMensagem(EnviarMensagemRequest request) {
 
         if (request == null) {
             throw new ResponseStatusException(
@@ -82,12 +77,10 @@ public class ChatService {
         }
 
         if (request.conteudo().length() > 1000) {
-
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST,
                     "A mensagem ultrapassou o limite de 1000 caracteres."
             );
         }
     }
-
 }
