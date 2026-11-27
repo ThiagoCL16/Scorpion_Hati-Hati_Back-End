@@ -4,6 +4,7 @@ import com.scorpionTCC.demo.entity.Contratante;
 import com.scorpionTCC.demo.entity.Usuario;
 import com.scorpionTCC.demo.responses.LoginResponse;
 import com.scorpionTCC.demo.service.UsuarioService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +14,7 @@ import java.util.Map;
 @RequestMapping("/usuarios")
 @CrossOrigin("*")
 public class UsuarioController {
-
+    @Autowired
     UsuarioService usuarioService;
 
     @PostMapping("/entrar")
