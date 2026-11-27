@@ -67,7 +67,7 @@ CREATE TABLE agendamento
 CREATE TABLE servico 
 ( 
  id_contratante BIGINT,  
- especifica��o VARCHAR (1000),  
+ especificacao VARCHAR (1000),
  id_prestador BIGINT,  
  status_servico VARCHAR (10),  
  id_servico BIGINT PRIMARY KEY IDENTITY, 
@@ -93,7 +93,7 @@ CREATE TABLE vaga
 ( 
  tipo_vaga BIT,  
  id_vaga BIGINT PRIMARY KEY IDENTITY,  
- descri��o_servi�o_vaga VARCHAR(1000),  
+ descricao_servico_vaga VARCHAR(1000),
  data_hora_vaga DATETIME,  
  prestador_requerido VARCHAR (50),
  id_contratante BIGINT,
