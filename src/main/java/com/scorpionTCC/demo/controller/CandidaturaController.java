@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/candidaturas")
 public class CandidaturaController {
