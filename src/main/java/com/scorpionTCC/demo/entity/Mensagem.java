@@ -1,3 +1,4 @@
+
 package com.scorpionTCC.demo.entity;
 
 import jakarta.persistence.*;
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "mensagem")
 public class Mensagem {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_mensagem")
@@ -24,12 +26,11 @@ public class Mensagem {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_usuario")
-    private Usuario idUsuario;
+    private Usuario usuario;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_chat")
-    private Chat IdChat;
-
+    private Chat chat;
 
     @PrePersist
     public void antesDeSalvar() {
@@ -38,5 +39,3 @@ public class Mensagem {
         }
     }
 }
-
-

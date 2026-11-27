@@ -67,7 +67,7 @@ CREATE TABLE agendamento
 CREATE TABLE servico 
 ( 
  id_contratante BIGINT,  
- especificaÁ„o VARCHAR (1000),  
+ especificaÔøΩÔøΩo VARCHAR (1000),  
  id_prestador BIGINT,  
  status_servico VARCHAR (10),  
  id_servico BIGINT PRIMARY KEY IDENTITY, 
@@ -93,7 +93,7 @@ CREATE TABLE vaga
 ( 
  tipo_vaga BIT,  
  id_vaga BIGINT PRIMARY KEY IDENTITY,  
- descriÁ„o_serviÁo_vaga VARCHAR(1000),  
+ descriÔøΩÔøΩo_serviÔøΩo_vaga VARCHAR(1000),  
  data_hora_vaga DATETIME,  
  prestador_requerido VARCHAR (50),
  id_contratante BIGINT,
@@ -197,3 +197,50 @@ CREATE TABLE requer
  FOREIGN KEY(id_agendamento) REFERENCES agendamento (id_agendamento)
 ); /*OK*/
 
+-- 1. Aumentar o tamanho do conte√∫do das mensagens
+ALTER TABLE mensagem
+ALTER COLUMN conteudo NVARCHAR(1000) NULL;
+GO
+
+-- 2. Garantir data e hora nas novas mensagens
+UPDATE mensagem
+SET data_hora = GETDATE()
+WHERE data_hora IS NULL;
+GO
+
+ALTER TABLE mensagem
+    ADD CONSTRAINT DF_mensagem_data_hora
+        DEFAULT GETDATE() FOR data_hora;
+GO
+
+-- 3. Adicionar indicador de mensagem lida
+ALTER TABLE mensagem
+    ADD lida BIT NOT NULL
+    CONSTRAINT DF_mensagem_lida DEFAULT 0 WITH VALUES;
+GO
+
+-- 4. Garantir status padr√£o para novos chats
+ALTER TABLE chat
+    ADD CONSTRAINT DF_chat_status
+        DEFAULT 1 FOR status_chat;
+GO
+
+-- 5. Facilitar a busca das mensagens de cada conversa
+CREATE INDEX IX_mensagem_chat_data
+    ON mensagem (id_chat, data_hora, id_mensagem);
+GO
+
+-- 6. Verificar se existem conversas duplicadas
+SELECT
+    id_contratante,
+    id_prestador,
+    COUNT(*) AS quantidade
+FROM chat
+GROUP BY id_contratante, id_prestador
+HAVING COUNT(*) > 1;
+GO
+
+-- Execute somente se a consulta anterior n√£o retornar duplicatas:
+CREATE UNIQUE INDEX UX_chat_participantes
+    ON chat (id_contratante, id_prestador);
+GO

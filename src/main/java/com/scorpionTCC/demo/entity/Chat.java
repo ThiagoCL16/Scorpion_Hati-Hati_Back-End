@@ -1,3 +1,4 @@
+
 package com.scorpionTCC.demo.entity;
 
 import jakarta.persistence.*;
@@ -9,6 +10,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "chat")
 public class Chat {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_chat")
@@ -19,9 +21,9 @@ public class Chat {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_prestador")
-    private PrestadorServico idPrestadorDeServico;
+    private PrestadorServico prestadorServico;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_contratante")
-    private Contratante idContratante;
+    private Contratante contratante;
 }
